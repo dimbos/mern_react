@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "mongoUri": "mongodb+srv://dima:1234@cluster0-uwivy.azure.mongodb.net/app?retryWrites=true&w=majority",
+    "jwtSecret": "dima react mern"
+}
