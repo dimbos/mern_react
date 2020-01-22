@@ -46,7 +46,7 @@ router.post(
 });
 
 // /api/auth/login
-router.post('./login', 
+router.post('/login', 
 [
     check('email', 'Введите корректный email').normalizeEmail().isEmail(),
     check('password', 'Ввдите пароль').exists()
@@ -55,7 +55,7 @@ async(req, res) => {
     try{
 
         const errors = validationResult(req);
-        if(errors.isEmpty()){
+        if(!errors.isEmpty()){
             return res.status(400).json({
                 errors: errors.array(),
                 message: 'Некорректные данные при входе в систему'
@@ -75,13 +75,13 @@ async(req, res) => {
             return res.status(400).json({message: 'Неверный пароль попробуйте снова!'});
         }
 
-        const tocken = jwt.sign(
+        const token = jwt.sign(
             {userId: user.id},
             config.get('jwtSecret'),
             {expiresIn: '1h'}
         )
 
-        res.json({token, userId});
+        res.json({token, userId: user.id});
 
 
     } catch(e){
