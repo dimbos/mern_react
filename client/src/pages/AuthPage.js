@@ -17,6 +17,10 @@ export const AuthPage = () => {
         clearError();
     }, [error, message, clearError]);
 
+    useEffect(() => {
+        window.M.updateTextFields();
+    }, [])
+
     const changeHandler = (e) => {
         setForm({...form, [e.target.name]: e.target.value});
     }
@@ -55,12 +59,12 @@ export const AuthPage = () => {
                         <div>
 
                         <div className="input-field">
-                            <input placeholder="Введите e-mail" id="email" type="text" className="yellow-input" name="email" onChange={changeHandler}/>
+                            <input placeholder="Введите e-mail" id="email" type="text" className="yellow-input" value={form.email} name="email" onChange={changeHandler}/>
                             <label htmlFor="email">E-mail</label>
                         </div>
 
                         <div className="input-field">
-                            <input placeholder="Введите пароль" id="password" type="password" className="yellow-input" name="password" onChange={changeHandler}/>
+                            <input placeholder="Введите пароль" id="password" type="password" className="yellow-input" value={form.password} name="password" onChange={changeHandler}/>
                             <label htmlFor="email">Пароль</label>
                         </div>
 
